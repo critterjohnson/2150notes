@@ -26,7 +26,7 @@ title: "C++"
 
 - in C++, variables of objects are not refs, they are the objects themselves
 
-    - `IntCell.cpp`
+    `IntCell.cpp`
 
     ```cpp
     #include <iostream>
@@ -42,7 +42,7 @@ title: "C++"
     }
     ```
 
-    - `IntCell.h`
+    `IntCell.h`
 
     ```cpp
     #ifndef INTCELL_H // every .h needs to start with these
@@ -93,3 +93,40 @@ title: "C++"
 - `#ifndef` - if not defined (also `#ifdef`, `#if`)
 - `#endif` - end of an `#if`
 - `#define` - defines a macro (direct text replacement)
+
+## Memory
+
+- anything allocated with `new` is on the heap
+  - must be deallocated with `delete`
+- when accessing a field of the pointer's pointee, have to deref
+  ```cpp
+  // these are equivalent
+  (*r).num = 4;
+  r->num = 4;
+  ```
+
+## Defaults
+
+- C++ provides some defaults - but they have some issues
+  - constructor
+  - copy constructor
+    ```cpp
+    IntCell original;
+    IntCell copy = original // or copy(original)
+    ```
+  - destructor
+  - operator=()
+    ```cpp
+    IntCell original; // constructor called
+    IntCell copy;
+    copy = original; // operator= called
+    ```
+    - called when `=` is applied to two objects *after* both have previously
+        been constructed
+
+## STL
+
+- `vector` - better array, can be copied and items can be found within it
+  - doubles its internal array in size when it gets full and copies everything
+      to the new one
+- `string` - better C string
